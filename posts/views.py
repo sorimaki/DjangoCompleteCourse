@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 
 posts = [
@@ -21,7 +22,9 @@ posts = [
 ]
 
 # Create your views here.
-def home(request):
+def home(request, name):
+    print(reverse('home', args=[name]))
+
     html = ""
 
     for post in posts:
@@ -35,7 +38,7 @@ def home(request):
     return HttpResponse(html) 
 
 def post(request, id):
-    
+
     #print(type(id))
     valid_id = False
     for post in posts:
@@ -56,5 +59,7 @@ def post(request, id):
     else:
         return HttpResponseNotFound("These are not the droids you are looking for")
 
-def google(request):
-    return HttpResponseRedirect('https://www.google.com') 
+def google(request, id):
+    url = reverse('post', args=[id])
+    #return HttpResponseRedirect(f'/post/{id}') 
+    return HttpResponseRedirect(url) 
