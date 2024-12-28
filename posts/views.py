@@ -27,12 +27,28 @@ def home(request):
     for post in posts:
         html +=  f'''
             <div>
-                <h1>{post['id']} -- {post['title']}</h1>
+                <a href="/post/{post['id']}/"
+                <h1>{post['id']} -- {post['title']}</h1></a>
                 <p>{post['description']}</p>
             </div>
 '''
     return HttpResponse(html)
 
 def post(request, id):
-    print(type(id))
-    return HttpResponse(f"{id} ")
+    
+    #print(type(id))
+    
+    for post in posts:
+        if post['id']==id:
+            post_dict = post
+            break
+
+    html = f'''
+            <div>
+                <h1>{post_dict['id']} -- {post_dict['title']}</h1>
+                <p>{post_dict['description']}</p>
+            </div>
+    '''
+    
+    return HttpResponse(html)
+
