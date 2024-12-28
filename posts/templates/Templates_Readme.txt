@@ -1,0 +1,1 @@
+Holding HTML templates for the Posts App

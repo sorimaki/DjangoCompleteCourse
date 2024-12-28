@@ -21,10 +21,10 @@ posts = [
     },
 ]
 
-# Create your views here.
-def home(request, name):
-    print(reverse('home', args=[name]))
+#Sposts = []
 
+# Create your views here.
+def home(request):
     html = ""
 
     for post in posts:
@@ -35,7 +35,7 @@ def home(request, name):
                 <p>{post['description']}</p>
             </div>
 '''
-    return HttpResponse(html) 
+    return render(request, 'posts/home.html', {'name':'BUBU', 'list':posts} ) 
 
 def post(request, id):
 
@@ -55,7 +55,7 @@ def post(request, id):
                 </div>
         '''
         
-        return HttpResponse(html)
+        return render(request, 'posts/post.html', {'post_dict':post_dict})
     else:
         return HttpResponseNotFound("These are not the droids you are looking for")
 
