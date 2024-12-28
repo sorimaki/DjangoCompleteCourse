@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Welcome {{name}}</h1>
+{%extends 'base.html'%}
+{%load static%}
+
+{% block css%} 
+  <link rel="stylesheet" href="{%static 'posts/home.css'%}">
+{% endblock css%} 
+
+{% block title%} 
+Display post list
+{% endblock title%} 
+
+{% block body%} 
     <p1>Using IfElse</p1>
     {%if list%}
       <h1>Post list:</h1>
         {% for post in list%}
         <a href="{%url 'post' post.id %}"><h1>{{post.id}} -- {{post.title}}</h1></a>
-        <h3>{{post.description}}</h3>
+        <h3>{{post.description|truncatewords:1}}</h3>
         {%empty%}
           <h1>NoPostsAvailable</h1>
         {%endfor%}
@@ -30,5 +31,4 @@
       <h1>NoPostsAvailable</h1>
     {%endfor%}
 
-  </body>
-</html>
+{% endblock body%}

@@ -1,0 +1,19 @@
+{%extends 'base.html'%}
+{%block categories%}
+<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</a>
+<ul class="dropdown-menu">
+    {%for categ in categories%}
+    <li><a class="dropdown-item" href="#">{{categ}}</a></li>
+    {%endfor%}
+</ul>
+{%endblock categories%}
+{% block body%}
+        <h1 class="my-3">Latest</h1>
+        <div class="row">
+            {% for post in list%}
+            {%include 'posts/includes/postcard.html'%}
+            {%endfor%}
+        </div>
+{% endblock body%}
+
+ 
