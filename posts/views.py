@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 
 posts = [
@@ -32,23 +32,29 @@ def home(request):
                 <p>{post['description']}</p>
             </div>
 '''
-    return HttpResponse(html)
+    return HttpResponse(html) 
 
 def post(request, id):
     
     #print(type(id))
-    
+    valid_id = False
     for post in posts:
         if post['id']==id:
             post_dict = post
+            valid_id = True
             break
 
-    html = f'''
-            <div>
-                <h1>{post_dict['id']} -- {post_dict['title']}</h1>
-                <p>{post_dict['description']}</p>
-            </div>
-    '''
-    
-    return HttpResponse(html)
+    if valid_id == True:
+        html = f'''
+                <div>
+                    <h1>{post_dict['id']} -- {post_dict['title']}</h1>
+                    <p>{post_dict['description']}</p>
+                </div>
+        '''
+        
+        return HttpResponse(html)
+    else:
+        return HttpResponseNotFound("These are not the droids you are looking for")
 
+def google(request):
+    return HttpResponseRedirect('https://www.google.com') 
