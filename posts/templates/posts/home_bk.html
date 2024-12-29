@@ -13,7 +13,7 @@ Display post list
     <p1>Using IfElse</p1>
     {%if list%}
       <h1>Post list:</h1>
-        {% for post in list%}
+        {% for post in list%} 
         <a href="{%url 'post' post.id %}"><h1>{{post.id}} -- {{post.title}}</h1></a>
         <h3>{{post.description|truncatewords:1}}</h3>
         {%empty%}
