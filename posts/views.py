@@ -22,11 +22,6 @@ posts = [
     },
 ]
 
-categories = [
-    'Programming',
-    'Food',
-    'Travel',
-]
 #Sposts = []
 
 # Create your views here.
@@ -41,7 +36,7 @@ def home(request):
                 <p>{post['description']}</p>
             </div>
 '''
-    return render(request, 'posts/index.html', {'name':'BUBU', 'list':posts, 'categories':categories} ) 
+    return render(request, 'posts/index.html', {'name':'BUBU', 'list':posts} ) 
 
 def post(request, id):
 
@@ -61,7 +56,7 @@ def post(request, id):
                 </div>
         '''
         
-        return render(request, 'posts/post.html', {'post_dict':post_dict, 'categories':categories})
+        return render(request, 'posts/post.html', {'post_dict':post_dict})
     else:
         # return HttpResponseNotFound("These are not the droids you are looking for")
         raise Http404()
