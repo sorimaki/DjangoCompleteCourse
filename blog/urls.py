@@ -9,3 +9,6 @@ urlpatterns = [
     path('<int:id>/', views.google),
     path('global/', views.global1)
 ] 
+
+admin.site.site_header = 'Django Blog course'
+admin.site.index_title = 'Blog Course: Administration pannel'
